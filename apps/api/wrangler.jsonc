@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "todoabl-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-10",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "todoabl",
+      "database_id": "REPLACE_ME"
+    }
+  ],
+  "vars": {
+    "SESSION_TTL_SECONDS": "2592000"
+  }
+}

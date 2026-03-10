@@ -1,0 +1,30 @@
+{
+  "name": "@todoabl/mobile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "dev": "vite",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@todoabl/core": "workspace:*",
+    "@todoabl/graphql": "workspace:*",
+    "@apollo/client": "^3.13.8",
+    "@capacitor/core": "latest",
+    "@ionic/react": "latest",
+    "@ionic/react-router": "latest",
+    "graphql": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-hook-form": "latest",
+    "react-router": "^5.3.4",
+    "react-router-dom": "^5.3.4"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
+  }
+}

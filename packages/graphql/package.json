@@ -1,0 +1,12 @@
+{
+  "name": "@todoabl/graphql",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./schema/*": "./schema/*"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --project tsconfig.json"
+  }
+}

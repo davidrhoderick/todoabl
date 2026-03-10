@@ -1,0 +1,11 @@
+type TaskUpdate {
+  body: String!
+  createdAt: DateTime!
+  id: ID!
+  taskId: ID!
+}
+
+extend type Mutation {
+  createList(input: CreateListInput!): CreateListPayload!
+  createTask(input: CreateTaskInput!): CreateTaskPayload!
+}

@@ -1,0 +1,37 @@
+enum TaskState {
+  CANCELED
+  DONE
+  INBOX
+  IN_PROGRESS
+  NEXT
+  SOMEDAY
+  WAITING
+}
+
+type Task {
+  completedAt: DateTime
+  deadlineAt: DateTime
+  id: ID!
+  listId: ID!
+  notes: String
+  parentTaskId: ID
+  reminderAt: DateTime
+  startAt: DateTime
+  state: TaskState!
+  subtasks: [Task!]!
+  title: String!
+  updates: [TaskUpdate!]!
+}
+
+input CreateTaskInput {
+  deadlineAt: DateTime
+  listId: ID!
+  reminderAt: DateTime
+  startAt: DateTime
+  title: String!
+}
+
+type CreateTaskPayload {
+  list: TaskList!
+  task: Task!
+}

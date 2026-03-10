@@ -1,0 +1,15 @@
+type TaskList {
+  color: String
+  id: ID!
+  name: String!
+  tasks(includeCompleted: Boolean = false, state: TaskState): [Task!]!
+}
+
+input CreateListInput {
+  color: String
+  name: String!
+}
+
+type CreateListPayload {
+  list: TaskList!
+}

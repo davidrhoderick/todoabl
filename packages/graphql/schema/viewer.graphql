@@ -1,0 +1,14 @@
+extend type Query {
+  list(id: ID!): TaskList
+  task(id: ID!): Task
+  viewer: Viewer!
+}
+
+type Viewer {
+  email: String!
+  id: ID!
+  inbox: [Task!]!
+  lists: [TaskList!]!
+  today: [Task!]!
+  upcoming: [Task!]!
+}

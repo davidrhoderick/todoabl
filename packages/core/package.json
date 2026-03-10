@@ -1,0 +1,12 @@
+{
+  "name": "@todoabl/core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./task-state": "./src/task-state.ts"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --project tsconfig.json"
+  }
+}
