@@ -10,6 +10,7 @@ const typeScriptFiles = ["**/*.ts", "**/*.tsx"];
 export default [
   {
     ignores: [
+      "**/.wrangler/**",
       "**/dist/**",
       "**/build/**",
       "**/node_modules/**",

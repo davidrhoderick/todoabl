@@ -8,7 +8,7 @@ import type { AppBindings } from "./types";
 const app = new Hono<AppBindings>();
 const authApp = buildOpenApiApp();
 
-app.use("*", async (c, next) => {
+app.use("/auth/*", async (c, next) => {
   const appContext = await createAppContext(c);
   c.set("appContext", appContext);
   c.set("requestId", appContext.requestId);
@@ -19,8 +19,7 @@ app.use("*", async (c, next) => {
 app.route("/", authApp);
 
 app.all("/graphql", async (c) => {
-  const context = c.get("appContext");
-  return handleGraphQL(c.req.raw, context);
+  return handleGraphQL(c.req.raw, c.env, c.executionCtx);
 });
 
 export default app;
