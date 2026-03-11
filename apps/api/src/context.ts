@@ -14,7 +14,7 @@ export async function createAppContext(
   c: Context<AppBindings>
 ): Promise<AppContext> {
   const authorization = c.req.header("authorization");
-  const { session } = await resolveSession(authorization);
+  const { session } = await resolveSession(c.env, authorization);
 
   return {
     env: c.env,

@@ -2,10 +2,18 @@ import { integer, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   createdAt: integer("created_at").notNull(),
+  displayName: text("display_name"),
   email: text("email").notNull().unique(),
   id: text("id").primaryKey(),
   passwordHash: text("password_hash").notNull(),
   updatedAt: integer("updated_at").notNull()
+});
+
+export const sessions = sqliteTable("sessions", {
+  createdAt: integer("created_at").notNull(),
+  expiresAt: integer("expires_at").notNull(),
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull()
 });
 
 export const tasks = sqliteTable("tasks", {

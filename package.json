@@ -12,6 +12,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "prepare": "husky",
+    "test": "vitest run",
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
@@ -33,7 +34,8 @@
     "husky": "latest",
     "lint-staged": "latest",
     "prettier": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "vitest": "latest"
   },
   "lint-staged": {
     "*.{js,mjs,cjs,ts,tsx,json,md,yml,yaml,graphql}": [

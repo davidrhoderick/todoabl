@@ -1,7 +1,4 @@
-import {
-  renewSessionExpiration,
-  shouldRenewSession
-} from "@todoabl/auth/session";
+import { getSession } from "./lib/auth-service";
 
 export type SessionRecord = {
   expiresAt: number;
@@ -14,22 +11,17 @@ export type SessionContext = {
 };
 
 export async function resolveSession(
+  env: Env,
   header: string | undefined
 ): Promise<SessionContext> {
   const token = header?.replace(/^Bearer\s+/u, "").trim();
-  const expiresAt = Date.now() + 60_000;
 
   if (!token) {
     return { session: null };
   }
 
-  return {
-    session: {
-      expiresAt: shouldRenewSession(expiresAt)
-        ? renewSessionExpiration(60 * 60 * 24 * 30)
-        : expiresAt,
-      token,
-      userId: "placeholder-user-id"
-    }
-  };
+  const ttlSeconds = Number.parseInt(env.SESSION_TTL_SECONDS, 10);
+  const session = await getSession(env.DB, token, ttlSeconds);
+
+  return { session };
 }

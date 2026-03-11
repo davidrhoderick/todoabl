@@ -6,8 +6,13 @@ const authInputSchema = z.object({
 });
 
 const authResponseSchema = z.object({
+  expiresAt: z.number().int().positive(),
   sessionToken: z.string().uuid(),
   userId: z.string().uuid()
+});
+
+const errorSchema = z.object({
+  error: z.string()
 });
 
 const sessionSchema = z.object({
@@ -35,6 +40,14 @@ export const registerRoute = createRoute({
         }
       },
       description: "Register and create a session"
+    },
+    409: {
+      content: {
+        "application/json": {
+          schema: errorSchema
+        }
+      },
+      description: "Email is already registered"
     }
   },
   tags: ["auth"]
@@ -60,6 +73,14 @@ export const loginRoute = createRoute({
         }
       },
       description: "Login and create a session"
+    },
+    401: {
+      content: {
+        "application/json": {
+          schema: errorSchema
+        }
+      },
+      description: "Invalid credentials"
     }
   },
   tags: ["auth"]
@@ -68,6 +89,11 @@ export const loginRoute = createRoute({
 export const logoutRoute = createRoute({
   method: "post",
   path: "/auth/logout",
+  security: [
+    {
+      bearerAuth: []
+    }
+  ],
   responses: {
     200: {
       description: "Logout and invalidate the current session"
@@ -79,6 +105,11 @@ export const logoutRoute = createRoute({
 export const sessionRoute = createRoute({
   method: "get",
   path: "/auth/session",
+  security: [
+    {
+      bearerAuth: []
+    }
+  ],
   responses: {
     200: {
       content: {

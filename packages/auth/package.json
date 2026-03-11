@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./password": "./src/password.ts",
     "./session": "./src/session.ts"
   },
   "scripts": {
