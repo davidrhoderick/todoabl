@@ -2,6 +2,8 @@
 
 Architecture blueprint for a low-cost mobile task app built on Cloudflare and Ionic React.
 
+Current implementation status and next steps live in [`TODO.md`](/home/davidr/Development/todoabl/TODO.md). Check that file first before continuing work.
+
 ## Goals
 
 - Mobile-first task app with better semantics than basic todo apps
