@@ -1,4 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["codegen.ts"]
+  "compilerOptions": {
+    "verbatimModuleSyntax": false
+  },
+  "include": [
+    "codegen.ts",
+    "codegen/server/typeDefs.generated.ts",
+    "codegen/server/types.generated.ts",
+    "src/**/*.ts"
+  ]
 }

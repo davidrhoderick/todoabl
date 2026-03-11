@@ -2,7 +2,8 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["ES2023", "WebWorker"],
-    "types": ["node"]
+    "types": ["node"],
+    "verbatimModuleSyntax": false
   },
   "include": ["src/**/*.ts", "worker-configuration.d.ts"]
 }

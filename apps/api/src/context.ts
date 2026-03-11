@@ -13,11 +13,30 @@ export type AppContext = {
 export async function createAppContext(
   c: Context<AppBindings>
 ): Promise<AppContext> {
-  const authorization = c.req.header("authorization");
-  const { session } = await resolveSession(c.env, authorization);
+  return createAppContextFromAuthorization(
+    c.env,
+    c.req.header("authorization") ?? undefined
+  );
+}
+
+export async function createAppContextFromRequest(
+  env: Env,
+  request: Request
+): Promise<AppContext> {
+  return createAppContextFromAuthorization(
+    env,
+    request.headers.get("authorization") ?? undefined
+  );
+}
+
+async function createAppContextFromAuthorization(
+  env: Env,
+  authorization: string | undefined
+): Promise<AppContext> {
+  const { session } = await resolveSession(env, authorization);
 
   return {
-    env: c.env,
+    env,
     requestId: crypto.randomUUID(),
     sessionToken: session?.token ?? null,
     userId: session?.userId ?? null

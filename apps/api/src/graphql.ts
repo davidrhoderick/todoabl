@@ -1,37 +1,22 @@
+import { ApolloServer } from "@apollo/server";
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
+import { startServerAndCreateCloudflareWorkersHandler } from "@as-integrations/cloudflare-workers";
+import { typeDefs } from "@todoabl/graphql/server";
+
 import type { AppContext } from "./context";
+import { createAppContextFromRequest } from "./context";
+import { graphqlResolvers } from "./graphql-resolvers";
 
-const schemaPreview = `
-type Query {
-  viewer: Viewer!
-}
+const server = new ApolloServer<AppContext>({
+  introspection: true,
+  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
+  resolvers: graphqlResolvers,
+  typeDefs
+});
 
-type Viewer {
-  id: ID!
-}
-`;
-
-export async function handleGraphQL(
-  request: Request,
-  context: AppContext
-): Promise<Response> {
-  if (!context.userId) {
-    return Response.json(
-      { errors: [{ message: "Unauthorized" }] },
-      { status: 401 }
-    );
-  }
-
-  if (request.method !== "POST") {
-    return new Response(schemaPreview, {
-      headers: { "content-type": "text/plain; charset=utf-8" }
-    });
-  }
-
-  return Response.json({
-    data: {
-      viewer: {
-        id: context.userId
-      }
-    }
-  });
-}
+export const handleGraphQL = startServerAndCreateCloudflareWorkersHandler<
+  Env,
+  AppContext
+>(server, {
+  context: async ({ env, request }) => createAppContextFromRequest(env, request)
+});

@@ -5,6 +5,7 @@
 This repo is the working context for `todoabl`, a mobile-first task app built with Ionic React, Cloudflare Workers, D1, Drizzle, GraphQL, Apollo, and Hono.
 
 Use this file as the top-level operating contract for work in this repository.
+For current status, active branches, and immediate next steps, check [`TODO.md`](/home/davidr/Development/todoabl/TODO.md) first.
 
 ## Product Priorities
 
