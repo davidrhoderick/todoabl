@@ -1,12 +1,23 @@
+enum ListColor {
+  BLUE
+  GRAY
+  GREEN
+  ORANGE
+  PINK
+  PURPLE
+  RED
+  YELLOW
+}
+
 type TaskList {
-  color: String
+  color: ListColor
   id: ID!
   name: String!
   tasks(includeCompleted: Boolean = false, state: TaskState): [Task!]!
 }
 
 input CreateListInput {
-  color: String
+  color: ListColor
   name: String!
 }
 
