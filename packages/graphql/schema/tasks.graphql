@@ -35,3 +35,25 @@ type CreateTaskPayload {
   list: TaskList!
   task: Task!
 }
+
+input CompleteTaskInput {
+  id: ID!
+}
+
+type CompleteTaskPayload {
+  task: Task!
+}
+
+input ReopenTaskInput {
+  id: ID!
+  state: TaskState!
+}
+
+type ReopenTaskPayload {
+  task: Task!
+}
+
+extend type Mutation {
+  completeTask(input: CompleteTaskInput!): CompleteTaskPayload!
+  reopenTask(input: ReopenTaskInput!): ReopenTaskPayload!
+}

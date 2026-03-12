@@ -21,6 +21,7 @@ Current baseline:
 - D1-backed `viewer`, `list`, and `task` GraphQL resolvers implemented with `userId` scoping
 - Drizzle migrations and shared query helpers added for lists, tasks, and task updates
 - `createList` and `createTask` GraphQL mutations implemented and verified against local D1
+- `completeTask` and `reopenTask` GraphQL mutations implemented with shared task-state transition rules
 
 ## Key Decisions
 
@@ -46,12 +47,13 @@ Current baseline:
 
 ## Next Up
 
-1. Add tests for GraphQL auth and tenant isolation beyond the current DB query coverage.
-2. Add generated mobile hooks into actual screens instead of the placeholder app shell.
-3. Add secure storage integration in the mobile app for session tokens.
-4. Build the first list and task create/read flows end to end in the mobile app.
-5. Add task updates and task location persistence/query flows on the API path.
-6. Formalize the Drizzle migration workflow in Wrangler tooling and local D1 setup.
+1. Add an `updateTask` GraphQL mutation for task state, title, notes, and scheduling edits with shared transition rules.
+2. Add tests for GraphQL auth and tenant isolation beyond the current DB query coverage.
+3. Add generated mobile hooks into actual screens instead of the placeholder app shell.
+4. Add secure storage integration in the mobile app for session tokens.
+5. Build the first list and task create/read flows end to end in the mobile app.
+6. Add task updates and task location persistence/query flows on the API path.
+7. Formalize the Drizzle migration workflow in Wrangler tooling and local D1 setup.
 
 ## Known Follow-Ups
 
@@ -64,6 +66,8 @@ Current baseline:
 - `auth-d1-rest`: clean auth PR branch based on `main`
 - `graphql-playground`: Apollo Server and landing page branch based on `auth-d1-rest`
 - Next branch from here: capture the GraphQL list/task D1 slice and target `graphql-playground` as the PR base
+- Current branch: `graphql-task-status-flows` for task completion/reopen mutations
+- Next branch from here: `updateTask` mutation slice on top of `graphql-task-status-flows`
 
 ## Review Workflow
 

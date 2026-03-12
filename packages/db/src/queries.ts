@@ -17,6 +17,12 @@ export type {
   ListRecord,
   TaskRecord,
   TaskState,
+  TaskStatusRecord,
   TaskUpdateRecord
 } from "./query-types";
-export { createList, createTask } from "./query-writes";
+export {
+  completeTask,
+  createList,
+  createTask,
+  reopenTask
+} from "./query-writes";

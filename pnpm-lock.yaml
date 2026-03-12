@@ -166,6 +166,9 @@ importers:
 
   packages/db:
     dependencies:
+      "@todoabl/core":
+        specifier: workspace:*
+        version: link:../core
       drizzle-orm:
         specifier: 0.45.1
         version: 0.45.1
