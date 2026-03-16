@@ -2,5 +2,43 @@ query ViewerQuery {
   viewer {
     email
     id
+    inbox {
+      id
+      title
+      state
+      startAt
+      reminderAt
+      deadlineAt
+    }
+    today {
+      id
+      title
+      state
+      startAt
+      reminderAt
+      deadlineAt
+    }
+    upcoming {
+      id
+      title
+      state
+      startAt
+      reminderAt
+      deadlineAt
+    }
+    lists {
+      id
+      name
+      color
+      tasks(includeCompleted: true) {
+        id
+        title
+        state
+        startAt
+        reminderAt
+        deadlineAt
+        completedAt
+      }
+    }
   }
 }
