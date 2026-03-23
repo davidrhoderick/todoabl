@@ -1,13 +1,9 @@
 import {
   buildViewerTaskBuckets,
-  createList,
-  createTask,
   getListById,
   getTaskById,
   getViewerById,
-  type ListColor,
   listListsByUserId,
-  type ListRecord,
   listSubtasksByParentId,
   listTasksByListId,
   listTasksByUserId,
@@ -17,65 +13,18 @@ import {
 import type { Resolvers } from "@todoabl/graphql/server";
 
 import type { AppContext } from "./context";
+import { requireUserId, unauthorizedError } from "./graphql-errors";
 import {
-  invalidInputError,
-  notImplementedError,
-  requireUserId,
-  unauthorizedError
-} from "./graphql-errors";
-import {
-  toIsoString,
   toTaskListNode,
   toTaskNode,
-  toTaskUpdateNode,
-  toTimestamp
+  toTaskUpdateNode
 } from "./graphql-mappers";
 import { DateTime } from "./graphql-scalars";
+import { taskMutations } from "./graphql-task-mutations";
 
 export const graphqlResolvers: Resolvers<AppContext> = {
   DateTime,
-  Mutation: {
-    createList: async (_parent, args, context) => {
-      const userId = requireUserId(context);
-      const name = args.input.name.trim();
-
-      if (!name) {
-        throw invalidInputError("List name is required.");
-      }
-
-      const list = await createList(context.env.DB, userId, {
-        color: args.input.color ?? null,
-        name
-      });
-
-      return { list: toTaskListNode(list) };
-    },
-    createTask: async (_parent, _args, context) => {
-      const userId = requireUserId(context);
-      const title = _args.input.title.trim();
-
-      if (!title) {
-        throw invalidInputError("Task title is required.");
-      }
-
-      const created = await createTask(context.env.DB, userId, {
-        deadlineAt: toTimestamp(_args.input.deadlineAt),
-        listId: _args.input.listId,
-        reminderAt: toTimestamp(_args.input.reminderAt),
-        startAt: toTimestamp(_args.input.startAt),
-        title
-      });
-
-      if (!created) {
-        throw invalidInputError("List not found.");
-      }
-
-      return {
-        list: toTaskListNode(created.list),
-        task: toTaskNode(created.task)
-      };
-    }
-  },
+  Mutation: taskMutations,
   Query: {
     list: async (_parent, args, context) => {
       const list = await getListById(

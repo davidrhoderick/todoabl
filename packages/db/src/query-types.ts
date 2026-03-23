@@ -101,3 +101,9 @@ export type CreateTaskInput = {
   startAt: number | null;
   title: string;
 };
+
+export type TaskStatusRecord = {
+  completedAt: number | null;
+  id: string;
+  state: TaskState;
+};
