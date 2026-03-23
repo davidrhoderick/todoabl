@@ -10,11 +10,12 @@
   "dependencies": {
     "@apollo/server": "^4.12.2",
     "@as-integrations/cloudflare-workers": "^1.1.1",
+    "@hono/zod-openapi": "latest",
     "@todoabl/auth": "workspace:*",
     "@todoabl/core": "workspace:*",
     "@todoabl/db": "workspace:*",
     "@todoabl/graphql": "workspace:*",
-    "@hono/zod-openapi": "latest",
+    "drizzle-orm": "0.45.1",
     "graphql": "latest",
     "hono": "latest",
     "zod": "latest"

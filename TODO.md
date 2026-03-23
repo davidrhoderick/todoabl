@@ -18,6 +18,9 @@ Current baseline:
 - OpenAPI auth docs live at `/docs`
 - GraphQL now runs through Apollo Server with the Cloudflare Workers adapter
 - Apollo Sandbox landing page available at `/graphql`
+- D1-backed `viewer`, `list`, and `task` GraphQL resolvers implemented with `userId` scoping
+- Drizzle migrations and shared query helpers added for lists, tasks, and task updates
+- `createList` and `createTask` GraphQL mutations implemented and verified against local D1
 
 ## Key Decisions
 
@@ -43,25 +46,24 @@ Current baseline:
 
 ## Next Up
 
-1. Implement D1-backed `viewer`, `list`, and `task` resolvers with strict `userId` scoping.
-2. Add Drizzle migrations and query helpers for lists, tasks, task updates, and task locations.
-3. Add tests for GraphQL auth and tenant isolation.
-4. Build `createList` and `createTask` mutations on the Apollo path.
-5. Add generated mobile hooks into actual screens instead of the placeholder app shell.
-6. Add secure storage integration in the mobile app for session tokens.
-7. Build the first list and task create/read flows end to end.
+1. Add tests for GraphQL auth and tenant isolation beyond the current DB query coverage.
+2. Add generated mobile hooks into actual screens instead of the placeholder app shell.
+3. Add secure storage integration in the mobile app for session tokens.
+4. Build the first list and task create/read flows end to end in the mobile app.
+5. Add task updates and task location persistence/query flows on the API path.
+6. Formalize the Drizzle migration workflow in Wrangler tooling and local D1 setup.
 
 ## Known Follow-Ups
 
-- Finish replacing placeholder GraphQL resolver return values with real domain logic
-- Add tests for session renewal and tenant isolation
-- Add Drizzle migration workflow and local D1 dev setup
+- Add tests for GraphQL auth and tenant isolation beyond the current DB query coverage
+- Formalize the Drizzle migration workflow in Wrangler tooling instead of manual local D1 reset/apply
 - Add Android geofencing implementation after core task flows exist
 
 ## Branches
 
 - `auth-d1-rest`: clean auth PR branch based on `main`
 - `graphql-playground`: Apollo Server and landing page branch based on `auth-d1-rest`
+- Next branch from here: capture the GraphQL list/task D1 slice and target `graphql-playground` as the PR base
 
 ## Review Workflow
 
