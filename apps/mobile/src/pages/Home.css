@@ -1,0 +1,99 @@
+.home-page {
+  --background: var(--app-surface);
+  --color: var(--app-text-strong);
+}
+
+.home-hero {
+  margin-bottom: 20px;
+}
+
+.home-hero ion-text {
+  color: var(--app-text-strong);
+}
+
+.home-hero h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 12ch;
+}
+
+.home-hero p {
+  color: var(--app-text-muted);
+  margin: 0 0 8px;
+  text-transform: lowercase;
+}
+
+.home-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.home-primary-action {
+  margin-top: 16px;
+}
+
+.home-form {
+  display: grid;
+  gap: 12px;
+}
+
+.home-card {
+  --background: var(--app-card-bg);
+  color: var(--app-text-strong);
+  border: 1px solid var(--app-card-border);
+  box-shadow: var(--app-card-shadow);
+}
+
+.home-card ion-card-title {
+  color: var(--app-text-strong);
+  font-size: 1.1rem;
+}
+
+.home-card ion-item {
+  --background: transparent;
+  --border-color: var(--app-card-border);
+  --color: var(--app-text-strong);
+}
+
+.home-card ion-input,
+.home-card ion-select {
+  --color: var(--app-text-strong);
+}
+
+.home-card ion-label h2,
+.home-card ion-label h3 {
+  color: var(--app-text-strong);
+}
+
+.home-card ion-label p,
+.home-card p {
+  color: var(--app-text-muted);
+}
+
+.home-loading {
+  display: grid;
+  min-height: 240px;
+  place-items: center;
+}
+
+.task-actions {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  min-width: 112px;
+}
+
+.list-add-button {
+  margin-top: 16px;
+}
+
+.home-drawer::part(content) {
+  --background: transparent;
+}
+
+.home-drawer-card {
+  margin: 0;
+  min-height: 100%;
+  border-radius: 24px 24px 0 0;
+}

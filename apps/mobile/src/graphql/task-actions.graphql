@@ -1,0 +1,49 @@
+mutation CreateList($input: CreateListInput!) {
+  createList(input: $input) {
+    list {
+      id
+      name
+      color
+    }
+  }
+}
+
+mutation CreateTask($input: CreateTaskInput!) {
+  createTask(input: $input) {
+    list {
+      id
+      name
+      color
+    }
+    task {
+      id
+      listId
+      title
+      state
+      startAt
+      reminderAt
+      deadlineAt
+      completedAt
+    }
+  }
+}
+
+mutation CompleteTask($input: CompleteTaskInput!) {
+  completeTask(input: $input) {
+    task {
+      id
+      state
+      completedAt
+    }
+  }
+}
+
+mutation ReopenTask($input: ReopenTaskInput!) {
+  reopenTask(input: $input) {
+    task {
+      id
+      state
+      completedAt
+    }
+  }
+}

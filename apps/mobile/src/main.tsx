@@ -1,10 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 
-import { AppShell } from "./ui/AppShell";
+import App from "./App";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
   <React.StrictMode>
-    <AppShell />
+    <App />
   </React.StrictMode>
 );
